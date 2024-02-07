@@ -5,7 +5,7 @@ REST-Rant is an app where users can review restaurants!
 ## App Routes
 
 | Method    | Path | Purpose |
-  - | - | -
+  | - | - | -
 | `GET`     | `/`                       | Home                                                                          |
 | `GET`     | `/places`                 | Index page listing all places                                                 |
 | `GET`     | `/places/new`             | New form for a place                                                          |
