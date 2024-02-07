@@ -2,27 +2,20 @@ require("dotenv").config()
 
 
 const app = require("express")()
-// const app = express()
 
+app.set('view engine','jsx')
+app.engine('jsx', require('express-react-views').createEngine())
 
-
-//const path = require("path")
-
-//app.use(express.static('public'))
-
-// app.get("*", (req,res) => {
-//     res.sendFile(path.join(__dirname, 'public/nord404.tsparticles/nord/404.html'))
-// })
 
 
 app.use("/places", require("./controllers/places"))
 
 app.get("/", (req,res) => {
-    res.send("hello restaurant world")
+    res.render("home")
 })
 
 app.get("*", (req,res) => {
-    res.status(404).send(`the most definitely happy and certainly not unhappy 404`)
+    res.render("error404")
 })
 
 app.listen(process.env.PORT, () => {
