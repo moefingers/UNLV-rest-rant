@@ -9,6 +9,30 @@ router.get('/new', (req, res) => {
     res.render('places/new')
 })
 
+router.get('/:id', (req, res) => {
+  let idChecked = Number(req.params.id)
+  let idExists = false
+  let indexOfPlace
+  places.forEach(place => {
+    if(place.id == idChecked){
+      idExists = true
+      indexOfPlace = places.indexOf(place)
+    }
+
+  });
+    if (isNaN(indexOfPlace)) {
+      res.render('error404')
+    }
+    else if (!places[indexOfPlace]) {
+      res.render('error404')
+    }
+    else {
+      res.render('places/show', {place: places[indexOfPlace]})
+      
+    }
+  
+
+})
   
 router.post('/', (req, res) => {
     req.body.id = places[places.length - 1].id + 1
@@ -31,7 +55,21 @@ router.post('/', (req, res) => {
     res.redirect('/places')
   })
   
-  
+router.delete('/:id', (req, res) => {
+    let idChecked = Number(req.params.id)
+    let idExists = false
+    let indexOfPlace
+
+    places.forEach(place => {
+        if(place.id == idChecked){
+            idExists = true
+            indexOfPlace = places.indexOf(place)
+        }
+    })
+
+    places.splice(indexOfPlace, 1)
+    res.redirect('/places')
+})  
 
 
 module.exports = router
