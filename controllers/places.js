@@ -10,16 +10,7 @@ router.get('/new', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  let idChecked = Number(req.params.id)
-  let idExists = false
-  let indexOfPlace
-  places.forEach(place => {
-    if(place.id == idChecked){
-      idExists = true
-      indexOfPlace = places.indexOf(place)
-    }
-
-  });
+let indexOfPlace =returnIndexOfPlace(req.params.id)
     if (isNaN(indexOfPlace)) {
       res.render('error404')
     }
@@ -33,6 +24,22 @@ router.get('/:id', (req, res) => {
   
 
 })
+
+router.get('/:id/edit', (req, res) => {
+ let indexOfPlace =returnIndexOfPlace(req.params.id)
+
+  if (isNaN(indexOfPlace)) {
+      res.render('error404')
+  }
+  else if (!places[indexOfPlace]) {
+      res.render('error404')
+  }
+  else {
+    res.render('places/edit', { place: places[indexOfPlace] })
+  }
+})
+
+
   
 router.post('/', (req, res) => {
     req.body.id = places[places.length - 1].id + 1
@@ -56,16 +63,7 @@ router.post('/', (req, res) => {
   })
   
 router.delete('/:id', (req, res) => {
-    let idChecked = Number(req.params.id)
-    let idExists = false
-    let indexOfPlace
-
-    places.forEach(place => {
-        if(place.id == idChecked){
-            idExists = true
-            indexOfPlace = places.indexOf(place)
-        }
-    })
+    let indexOfPlace = returnIndexOfPlace(req.params.id)
 
     places.splice(indexOfPlace, 1)
     res.redirect('/places')
@@ -73,3 +71,15 @@ router.delete('/:id', (req, res) => {
 
 
 module.exports = router
+
+function returnIndexOfPlace(id){
+  let idChecked = Number(id)
+  let indexOfPlace
+
+  places.forEach(place => {
+      if(place.id == idChecked){
+          indexOfPlace = places.indexOf(place)
+      }
+  })
+  return indexOfPlace
+}
