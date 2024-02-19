@@ -6,6 +6,7 @@ function edit_form (data) {
           <Default>
           <main>
             <h1>Edit Place</h1>
+            <h2>{data.place.id}</h2>
             <form method="POST" action={`/places/${data.place.id}?_method=PUT`}>
 
                 <div className='form-group'>

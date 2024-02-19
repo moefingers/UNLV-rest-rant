@@ -39,6 +39,30 @@ router.get('/:id/edit', (req, res) => {
   }
 })
 
+router.put('/:id', (req, res) => {
+  let indexOfPlace = returnIndexOfPlace(req.params.id)
+  if (isNaN(indexOfPlace)) {
+      res.render('error404')
+  }
+  else if (!places[indexOfPlace]) {
+      res.render('error404')
+  }
+  else {
+      if (!req.body.pic) {
+        req.body.pic = 'http://placekitten.com/400/400'
+      }
+      if (!req.body.city) {
+        req.body.city = 'Anytown'
+      }
+      if (!req.body.state) {
+        req.body.state = 'USA'
+      }
+      req.body.id = places[indexOfPlace].id
+      
+      places[indexOfPlace] = req.body
+      res.redirect(`/places/${req.body.id}`)
+  }
+})
 
   
 router.post('/', (req, res) => {
