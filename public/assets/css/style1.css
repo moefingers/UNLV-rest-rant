@@ -28,3 +28,11 @@ nav a:hover {
     color: pink;
     text-decoration: none;
 }
+
+.cardChild {
+    width: 100%;
+}
+
+.card {
+    width: 40%;
+}

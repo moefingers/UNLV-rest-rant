@@ -1,9 +1,9 @@
 const React = require('react')
-const Def = require('../default')
+const Default = require('../default')
 
 function new_form () {
     return (
-        <Def>
+        <Default>
           <main>
             <h1>Add a New Place</h1>
             <form method="POST" action="/places">
@@ -30,7 +30,7 @@ function new_form () {
                 <input className='btn btn-primary' type="submit" value="Add Place" />
             </form>
           </main>
-        </Def>
+        </Default>
     )
 }
 
