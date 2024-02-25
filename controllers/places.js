@@ -1,109 +1,57 @@
 const router = require('express').Router()
-const places = require('../models/places.js')
+const db = require('../models')
 
 router.get('/', (req, res) => {
-    res.render('places/index', {places}) 
+    db.Place.find()
+    .then((places) => {
+        res.render('places/index', {places})
+    })
+    .catch(err => {
+        console.log(err)
+        res.render('error404')
+    })
 })
 
+
+router.post('/', (req, res) => {
+  db.Place.create(req.body)
+  .then(() => {
+      res.redirect('/places')
+  })
+  .catch(err => {
+      console.log('err', err)
+      res.render('error404')
+  })
+})
+
+
+
 router.get('/new', (req, res) => {
-    res.render('places/new')
+  res.render('places/new')
 })
 
 router.get('/:id', (req, res) => {
-let indexOfPlace =returnIndexOfPlace(req.params.id)
-    if (isNaN(indexOfPlace)) {
-      res.render('error404')
-    }
-    else if (!places[indexOfPlace]) {
-      res.render('error404')
-    }
-    else {
-      res.render('places/show', {place: places[indexOfPlace]})
-      
-    }
-  
-
-})
-
-router.get('/:id/edit', (req, res) => {
- let indexOfPlace =returnIndexOfPlace(req.params.id)
-
-  if (isNaN(indexOfPlace)) {
-      res.render('error404')
-  }
-  else if (!places[indexOfPlace]) {
-      res.render('error404')
-  }
-  else {
-    res.render('places/edit', { place: places[indexOfPlace] })
-  }
+  res.send('GET /places/:id stub')
 })
 
 router.put('/:id', (req, res) => {
-  let indexOfPlace = returnIndexOfPlace(req.params.id)
-  if (isNaN(indexOfPlace)) {
-      res.render('error404')
-  }
-  else if (!places[indexOfPlace]) {
-      res.render('error404')
-  }
-  else {
-      if (!req.body.pic) {
-        req.body.pic = 'http://placekitten.com/400/400'
-      }
-      if (!req.body.city) {
-        req.body.city = 'Anytown'
-      }
-      if (!req.body.state) {
-        req.body.state = 'USA'
-      }
-      req.body.id = places[indexOfPlace].id
-      
-      places[indexOfPlace] = req.body
-      res.redirect(`/places/${req.body.id}`)
-  }
+  res.send('PUT /places/:id stub')
 })
 
-  
-router.post('/', (req, res) => {
-    req.body.id = places[places.length - 1].id + 1
-
-
-    // console.log(req.body)
-    if (!req.body.pic) {
-      // Default image if one is not provided
-      req.body.pic = 'http://placekitten.com/400/400'
-    }
-    if (!req.body.city) {
-      req.body.city = 'Anytown'
-    }
-    if (!req.body.state) {
-      req.body.state = 'USA'
-    }
-    
-    
-    places.push(req.body)
-    res.redirect('/places')
-  })
-  
 router.delete('/:id', (req, res) => {
-    let indexOfPlace = returnIndexOfPlace(req.params.id)
+  res.send('DELETE /places/:id stub')
+})
 
-    places.splice(indexOfPlace, 1)
-    res.redirect('/places')
-})  
+router.get('/:id/edit', (req, res) => {
+  res.send('GET edit form stub')
+})
 
+router.post('/:id/rant', (req, res) => {
+  res.send('GET /places/:id/rant stub')
+})
+
+router.delete('/:id/rant/:rantId', (req, res) => {
+    res.send('GET /places/:id/rant/:rantId stub')
+})
 
 module.exports = router
-
-function returnIndexOfPlace(id){
-  let idChecked = Number(id)
-  let indexOfPlace
-
-  places.forEach(place => {
-      if(place.id == idChecked){
-          indexOfPlace = places.indexOf(place)
-      }
-  })
-  return indexOfPlace
-}
