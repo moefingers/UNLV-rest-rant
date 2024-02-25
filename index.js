@@ -3,8 +3,9 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
-const methodOverride = require('method-override');
+const mongoose = require('mongoose');
 
+const methodOverride = require('method-override');
 
 
 
@@ -16,6 +17,13 @@ app.set('views', __dirname + '/views')
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
 
+
+// Database Connection
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+module.exports.Place = require('./models/places')
 
 // Controllers & Routes
 app.use('/places', require('./controllers/places'))
