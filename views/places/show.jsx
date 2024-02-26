@@ -20,6 +20,8 @@ const Show = ({place}) => {
           </p>
           <img  className="rounded mx-auto d-block" src={place.pic} alt={place.name} />
           <p className="text-center"> Located in {place.city},{place.state}</p>
+          <p>{place.showEstablished()}</p>
+          <p>serving {place.cuisines}</p>
           <p>{place.id}</p>
         </div>
 
