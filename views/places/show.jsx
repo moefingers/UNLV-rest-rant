@@ -2,6 +2,22 @@ const React = require("react");
 const Default = require("../default");
 
 const Show = ({place}) => {
+    let comments = (
+        <h3 className="inactive">No comments yet!</h3>
+
+    )
+    if (place.comments.length) {
+        comments = place.comments.map(c => {
+            return (
+                <div className="border">
+                    <h2 className="rant">{c.rant ? "Rant! " : "Rave! "}</h2>
+                    <h4>{c.content}</h4>
+                    <h3>- {c.author}</h3>
+                    <h4>Rating: {c.stars}</h4>
+                </div>
+            )
+        })
+    }
     // cuisines in comma seperated list, E.g. "Italian, Mexican, Chinese"
     place.cuisines.split(",").map((cuisine) => {
         return (
