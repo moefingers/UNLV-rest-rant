@@ -38,6 +38,7 @@ const Show = ({place}) => {
                     </div>
                 </div>
             </main>
+            <script src="/assets/js/showPlace.js"></script>
         </Default>
 
     )
