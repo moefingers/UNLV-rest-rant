@@ -1,8 +1,8 @@
 <!-- unlv-museum-banner-start -->
 <a href="https://unlv-museum.infinite-syndicate.com/rest-rant-ssr" target="_blank" rel="noopener">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://unlv-museum.infinite-syndicate.com/github-banners/rest-rant-ssr?theme=dark&v=187e9ae35c">
-    <img src="https://unlv-museum.infinite-syndicate.com/github-banners/rest-rant-ssr?theme=light&v=187e9ae35c" alt="Restaurant rating SSR app from Feb 2024 — original used Express + express-react-views + MongoDB, server-rendering JSX views. The museum preserves the JSX views and SSR character verbatim while reimplementing the data layer as Next.js Server Components + Drizzle/Neon." width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="https://unlv-museum.infinite-syndicate.com/github-banners/rest-rant-ssr?theme=dark&v=b4907b0d88">
+    <img src="https://unlv-museum.infinite-syndicate.com/github-banners/rest-rant-ssr?theme=light&v=b4907b0d88" alt="Restaurant rating SSR app from Feb 2024 — original used Express + express-react-views + MongoDB, server-rendering JSX views. The museum preserves the JSX views and SSR character verbatim while reimplementing the data layer as Next.js Server Components + Drizzle/Neon." width="100%">
   </picture>
 </a>
 
